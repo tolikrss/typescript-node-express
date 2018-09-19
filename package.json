@@ -1,0 +1,84 @@
+{
+  "name": "node-express-ts",
+  "author": "Anatoliy Lakhno",
+  "license": "MIT",
+  "version": "0.0.1",
+  "description": "My Simple Pet Project",
+  "private": true,
+  "scripts": {
+    "build": "webpack --config webpack.config.js",
+    "pm2": "pm2 start ./build/server.js",
+    "postinstall": "npm run build",
+    "test": "jest --forceExit",
+    "test-ci": "npm test && cat ./coverage/lcov.info | coveralls",
+    "start": "node ./build/compiled.js"
+  },
+  "jest": {
+    "globals": {
+      "ts-jest": {
+        "tsConfigFile": "tsconfig.json"
+      }
+    },
+    "moduleFileExtensions": [
+      "ts",
+      "js",
+      "json"
+    ],
+    "moduleDirectories": [
+      "node_modules",
+      "server"
+    ],
+    "transform": {
+      "^.+\\.(ts|tsx)$": "./node_modules/ts-jest/preprocessor.js"
+    },
+    "testMatch": [
+      "**/tests/**/*.test.(ts|js)"
+    ],
+    "testEnvironment": "node",
+    "mapCoverage": true,
+    "collectCoverage": true,
+    "collectCoverageFrom": [
+      "**/*.{ts,jsx}",
+      "!**/node_modules/**",
+      "!**/vendor/**",
+      "!**/coverage/**",
+      "!**/webpack.config.js"
+    ]
+  },
+  "engines": {
+    "node": "8.11.0"
+  },
+  "devDependencies": {
+    "@types/body-parser": "^1.16.4",
+    "@types/chai": "^4.0.1",
+    "@types/dotenv": "^4.0.0",
+    "@types/express": "^4.0.36",
+    "@types/jest": "^20.0.4",
+    "@types/node": "^8.0.13",
+    "@types/supertest": "^2.0.2",
+    "chai": "^4.1.0",
+    "coveralls": "^3.0.0",
+    "jest": "^21.2.1",
+    "mocha": "^4.0.1",
+    "supertest": "^3.0.0",
+    "ts-jest": "^21.2.4",
+    "ts-loader": "^3.2.0",
+    "ts-node": "^3.2.0",
+    "tslint": "^5.8.0",
+    "typescript": "^2.6.2",
+    "webpack": "^3.9.1",
+    "typings": "^1.3.3"
+  },
+  "dependencies": {
+    "@types/cookie-parser": "^1.4.1",
+    "@types/morgan": "^1.7.35",
+    "app-root-path": "^2.0.1",
+    "body-parser": "^1.17.2",
+    "cookie-parser": "^1.4.3",
+    "dotenv": "^4.0.0",
+    "ejs": "^2.5.1",
+    "express": "^4.16.2",
+    "morgan": "^1.7.0",
+    "pm2": "^2.7.1"
+  }
+}

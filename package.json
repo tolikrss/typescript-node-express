@@ -71,6 +71,7 @@
   },
   "dependencies": {
     "@types/cookie-parser": "^1.4.1",
+    "@types/mongoose": "^5.2.16",
     "@types/morgan": "^1.7.35",
     "app-root-path": "^2.0.1",
     "body-parser": "^1.17.2",
@@ -78,6 +79,7 @@
     "dotenv": "^4.0.0",
     "ejs": "^2.5.1",
     "express": "^4.16.2",
+    "mongoose": "^5.2.15",
     "morgan": "^1.7.0",
     "pm2": "^2.7.1"
   }

@@ -4,6 +4,7 @@ import * as bodyParser from 'body-parser';
 import * as cookieParser from 'cookie-parser';
 import * as logger from 'morgan';
 import * as routes from './routes/routes';
+import * as multer from 'multer';
 import { Database } from './db/index';
 import { SetAppDefaultHeadersMiddleware } from './routes/middlewares/setAppDefaultHeaders.middleware';
 

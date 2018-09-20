@@ -1,5 +1,6 @@
 import { Film } from '../db/models/film.model';
 import * as mongoose from 'mongoose';
+import { FilmData } from '../types/film.model';
 
 // const Film = mongoose.model( 'Film' );
 
@@ -20,7 +21,7 @@ export class FilmsService {
             } );
     }
 
-    static listFilmsFindTitle( param: any ) {
+    static listFilmsFindTitle( param: any ): Promise<Array<FilmData>> {
         let paramArr = param.split( '' );
         let paramStr = '';
 
@@ -32,9 +33,12 @@ export class FilmsService {
         }
         paramStr = paramArr.join( '' );
 
-        return Film.find( {
-            title: { $regex: new RegExp( paramStr.toLowerCase(), 'i' ) }
-        } ).sort( { title: 1 } );
+        return Film
+            .find( {
+                title: { $regex: new RegExp( paramStr.toLowerCase(), 'i' ) }
+            } )
+            .sort( { title: 1 } )
+            .then( res => res.map( film => new FilmData( film ) ) );
     }
 
     static listFilmsFindStars( param: any ): any {

@@ -38,7 +38,7 @@ export class FilmsService {
                 title: { $regex: new RegExp( paramStr.toLowerCase(), 'i' ) }
             } )
             .sort( { title: 1 } )
-            .then( res => res.map( film => new FilmData( film ) ) );
+            .then( res => res.map( film => new FilmData( <any>film ) ) );
     }
 
     static listFilmsFindStars( param: any ): any {

@@ -5,41 +5,40 @@ import { FilmsService } from '../../services/films.service';
 
 export class FilmsController {
 
-    static listFilms( req: Request, res: Response ): void {
-        FilmsService.listFilms()
-            .then( ( data: any ) => {
-                console.log( 'Films loaded from DataBase!' );
-                console.dir( data );
-                res.json( data )
-            } );
-        // res.json( {
-        //     message: 'Welcome to API sekeleton.',
-        // } );
+    public static async listFilms( req: Request, res: Response ): Promise<any> {
+        let allFilms = await FilmsService.listFilms();
+        res.json( allFilms );
+        return allFilms;
     }
 
-    static listFilmsFindTitle( req: Request, res: Response ): void {
-        FilmsService.listFilmsFindTitle( req.params.id )
-            .then( ( data: any ) => res.json( data ) );
+    public static async listFilmsFindTitle( req: Request, res: Response ): Promise<any> {
+        let findedFilms = await FilmsService.listFilmsFindTitle( req.params.id );
+        res.json( findedFilms );
+        return findedFilms;
     }
 
-    static listFilmsFindStars( req: Request, res: Response ): void {
-        FilmsService.listFilmsFindStars( req.params.id )
-            .then( ( data: any ) => res.json( data ) );
+    public static async listFilmsFindStars( req: Request, res: Response ): Promise<any> {
+        let findedFilms = await FilmsService.listFilmsFindStars( req.params.id );
+        res.json( findedFilms );
+        return findedFilms;
     }
 
-    static createFilm( req: Request, res: Response ): void {
-        FilmsService.createFilm( req.body )
-            .then( ( data: any ) => res.json( data ) );
+    public static async createFilm( req: Request, res: Response ): Promise<any> {
+        let createdFilm = await FilmsService.createFilm( req.body );
+        res.json( createdFilm );
+        return createdFilm;
     }
 
-    static deleteFilm( req: Request, res: Response ): void {
-        FilmsService.deleteFilm( req.params.id )
-            .then( ( data: any ) => res.json( data ) );
+    public static async deleteFilm( req: Request, res: Response ): Promise<any> {
+        let deletedFilm = await FilmsService.deleteFilm( req.params.id );
+        res.json( deletedFilm );
+        return deletedFilm;
     }
 
-    static deleteAllFilms( req: Request, res: Response ): void {
-        FilmsService.deleteAllFilms()
-            .then( ( data: any ) => res.json( data ) );
+    public static async deleteAllFilms( req: Request, res: Response ): Promise<any> {
+        let deletedFilms = await FilmsService.deleteAllFilms();
+        res.json( deletedFilms );
+        return deletedFilms;
     }
 
 }

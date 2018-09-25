@@ -7,7 +7,7 @@
   "private": true,
   "scripts": {
     "build": "webpack --config webpack.config.js",
-    "pm2": "pm2 start ./build/server.js",
+    "pm2": "pm2 start ./build/compiled.js",
     "postinstall": "npm run build",
     "test": "jest --forceExit",
     "test-ci": "npm test && cat ./coverage/lcov.info | coveralls",

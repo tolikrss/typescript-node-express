@@ -12,7 +12,8 @@
     "test": "jest --forceExit",
     "test-ci": "npm test && cat ./coverage/lcov.info | coveralls",
     "start": "node ./build/compiled.js",
-    "restart": "npm run build && npm run start"
+    "restart": "npm run build && npm run start",
+    "start-client": "cd client && npm start"
   },
   "jest": {
     "globals": {

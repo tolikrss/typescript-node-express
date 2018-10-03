@@ -1,6 +1,10 @@
 import { ACTIONS } from './constants';
 
-import { AnyAction } from 'redux';
+import { Action, ActionCreator, AnyAction } from 'redux';
+import { ThunkAction, ThunkDispatch } from 'redux-thunk';
+import { IStoreState } from '../reducers/root.reducer';
+
+import * as api from '../services/requests/films-request';
 
 export interface ISimpleAction extends AnyAction {
     type: ACTIONS.SIMPLE_ACTION;
@@ -14,4 +18,51 @@ export function simpleAction(): ISimpleAction {
     };
 }
 
-export type MainAction = ISimpleAction; // | ISimpleAction2 | null і тд.
+export type AsyncThunkAction = ActionCreator<ThunkAction<Promise<Action>, IStoreState, void, Action<any>>>;
+export const asyncThunkAction: AsyncThunkAction = () => {
+    return async ( dispatch: ThunkDispatch<IStoreState, void, Action> ) => {
+        dispatch( { type: ACTIONS.START_FETCH_ALL_FILMS } );
+        try {
+            const films = await api.getAllFilms();
+            return dispatch( {
+                type: ACTIONS.SUCCESS_FETCH_ALL_FILMS,
+                payload: films,
+            } );
+        } catch ( e ) {
+            return dispatch( {
+                type: ACTIONS.ERROR_FETCH_ALL_FILMS,
+            } );
+        }
+    };
+};
+
+export type MainAction = ISimpleAction | AsyncThunkAction; // | ISimpleAction2 | null і тд.
+
+
+// EXAMPLES
+interface Car {
+    id: number;
+    name: string;
+    color: string;
+}
+
+export class FetchAction implements AnyAction {
+    public readonly type = ACTIONS.fetch;
+
+    constructor( public cars: Array<Car> ) {
+    }
+}
+
+export class CreateAction implements AnyAction {
+    public readonly type = ACTIONS.create;
+
+    constructor( public car: Car, public payload: string ) {
+    }
+}
+
+export function createCar( car: Car ): ThunkAction<{}, {}, {}, AnyAction> {
+    return async ( dispatch, getState, fetch ) => {
+        // const response = await fetch( '/cars' );
+        // dispatch( new CreateAction( response ) );
+    };
+}

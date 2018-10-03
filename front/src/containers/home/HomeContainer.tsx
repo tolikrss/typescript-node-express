@@ -4,7 +4,7 @@ import { IStoreState } from '../../reducers/root.reducer';
 import { bindActionCreators, Dispatch } from 'redux';
 import * as actions from '../../actions';
 import { getSimpleData } from '../../selectors';
-import { getAllFilms } from '../../services/requests/films-request';
+import * as api from '../../services/requests/films-request';
 
 export interface IDispatchProps {
     exampleAction?: () => void;
@@ -23,7 +23,7 @@ type Props = IDispatchProps & IOwnProps;
 class HomeContainer extends React.Component<Props, IComponentState> {
 
     public async componentDidMount() {
-        await getAllFilms();
+        await api.getAllFilms();
     }
 
     public render() {

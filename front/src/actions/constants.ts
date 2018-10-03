@@ -1,0 +1,3 @@
+export enum ACTIONS {
+	SIMPLE_ACTION = 'SIMPLE_ACTION1'
+}

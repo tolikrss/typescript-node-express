@@ -21,7 +21,7 @@ export function simpleAction(): ISimpleAction {
 export type AsyncThunkActionCreator = ActionCreator<ThunkAction<Promise<Action>, IStoreState, void, Action<any>>>;
 export type AsyncThunkAction = ThunkAction<Promise<Action>, IStoreState, void, Action<any>>;
 
-export function asyncThunkAction(): any {
+export function asyncThunkAction(): AsyncThunkAction {
     return async ( dispatch: ThunkDispatch<IStoreState, void, Action> ) => {
         dispatch( { type: ACTIONS.START_FETCH_ALL_FILMS } );
         try {
@@ -38,7 +38,7 @@ export function asyncThunkAction(): any {
     };
 }
 
-export type MainAction = ISimpleAction | AsyncThunkAction; // | ISimpleAction2 | null і тд.
+export type MainAction = ISimpleAction | AsyncThunkAction | any;
 
 
 // EXAMPLES

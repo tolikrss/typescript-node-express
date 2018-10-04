@@ -50,7 +50,7 @@ const mapStateToProps = ( store: IStoreState, props: IOwnComponentProps ): IStor
     title: getSimpleData( store ).data
 });
 
-const mapDispatchToProps = ( dispatch: Dispatch<Action<any>> ): IDispatchProps => ({
+const mapDispatchToProps = ( dispatch: Dispatch<actions.MainAction> ): IDispatchProps => ({
     exampleAction: () => dispatch( actions.simpleAction() ),
     fetchAllFilms: () => dispatch( actions.asyncThunkAction() ),
 });

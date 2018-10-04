@@ -18,8 +18,10 @@ export function simpleAction(): ISimpleAction {
     };
 }
 
-export type AsyncThunkAction = ActionCreator<ThunkAction<Promise<Action>, IStoreState, void, Action<any>>>;
-export const asyncThunkAction: AsyncThunkAction = () => {
+export type AsyncThunkActionCreator = ActionCreator<ThunkAction<Promise<Action>, IStoreState, void, Action<any>>>;
+export type AsyncThunkAction = ThunkAction<Promise<Action>, IStoreState, void, Action<any>>;
+
+export function asyncThunkAction(): any {
     return async ( dispatch: ThunkDispatch<IStoreState, void, Action> ) => {
         dispatch( { type: ACTIONS.START_FETCH_ALL_FILMS } );
         try {
@@ -34,7 +36,7 @@ export const asyncThunkAction: AsyncThunkAction = () => {
             } );
         }
     };
-};
+}
 
 export type MainAction = ISimpleAction | AsyncThunkAction; // | ISimpleAction2 | null і тд.
 

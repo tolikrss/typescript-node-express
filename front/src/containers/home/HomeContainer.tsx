@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { IStoreState } from '../../reducers/root.reducer';
-import { Action, Dispatch } from 'redux';
 import * as actions from '../../actions';
 import { getSimpleData } from '../../selectors';
+import { MainAction } from '../../actions';
 
 // import * as api from '../../services/requests/films-request';
 
@@ -50,7 +50,7 @@ const mapStateToProps = ( store: IStoreState, props: IOwnComponentProps ): IStor
     title: getSimpleData( store ).data
 });
 
-const mapDispatchToProps = ( dispatch: Dispatch<actions.MainAction> ): IDispatchProps => ({
+const mapDispatchToProps = ( dispatch: MainAction ): IDispatchProps => ({
     exampleAction: () => dispatch( actions.simpleAction() ),
     fetchAllFilms: () => dispatch( actions.asyncThunkAction() ),
 });

@@ -9,14 +9,11 @@ import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 import registerServiceWorker from './registerServiceWorker';
 
-import Routes from './routes';
-
 ReactDOM.render(
     <Provider store={store}>
         <BrowserRouter>
             <React.Fragment>
                 <App/>
-                <Routes/>
             </React.Fragment>
         </BrowserRouter>
     </Provider>,

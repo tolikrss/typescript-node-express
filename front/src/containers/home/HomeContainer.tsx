@@ -1,32 +1,12 @@
 import * as React from 'react';
 
-
 import { connect } from 'react-redux';
 import { IStoreState } from '../../reducers/root.reducer';
-import * as actions from '../../actions';
 import { getSimpleData } from '../../selectors';
 import { MainAction } from '../../actions';
 
+import * as actions from '../../actions';
 import * as api from '../../services/requests/films-request';
-
-export interface IDispatchProps {
-  exampleAction?: () => void;
-  fetchAllFilms?: () => void;
-}
-
-interface IStoreStateProps {
-  title?: string;
-}
-
-interface IOwnComponentProps {
-  titleOwn?: string;
-}
-
-interface IComponentState {
-  data1?: any;
-}
-
-type Props = IDispatchProps & IOwnComponentProps & IStoreStateProps;
 
 class HomeContainer extends React.Component<Props, IComponentState> {
 
@@ -61,3 +41,25 @@ export default connect<IStoreStateProps, IDispatchProps, IOwnComponentProps>(
   mapStateToProps,
   mapDispatchToProps
 )( HomeContainer );
+
+/**
+ * Types
+ */
+export interface IDispatchProps {
+  exampleAction?: () => void;
+  fetchAllFilms?: () => void;
+}
+
+interface IStoreStateProps {
+  title?: string;
+}
+
+interface IOwnComponentProps {
+  titleOwn?: string;
+}
+
+interface IComponentState {
+  data1?: any;
+}
+
+type Props = IDispatchProps & IOwnComponentProps & IStoreStateProps;
